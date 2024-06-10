@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>{% block header %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}HTML 5 Boilerplate{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    {% endblock %}
+  </head>
+  <body>
+  <div class="container">
+   <!-- Image and text -->
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+	  <img src="{{ url_for('static', filename='img/ForAfrika.svg') }}" width="100" height="100" class="d-inline-block align-top" alt="">
+  </a>
+</nav>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <p class="bg-success" style="margin-top: -50px;">{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+  {% endwith %}
+  <div class="wrapper">
+   {% block content %}
+   {% endblock %}
+  </div>
+  </div>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+<script>
+  $(function() {
+    $( ".datepicker" ).datepicker({  format: 'dd/mm/yyyy'});
+  } );
+  </script>
+  </body>
+</html>

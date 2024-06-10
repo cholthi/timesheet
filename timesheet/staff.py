@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Represent For Afrika payroll staff"""
-import helpers
+import timesheet.helpers as helpers
 
 
 class Staff():

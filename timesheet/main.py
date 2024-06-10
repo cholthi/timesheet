@@ -1,14 +1,13 @@
 #!/usr/bin/python3
 """ Test script to generate excel"""
-import timesheet
-from excel_store import ExcelStorage
+import timesheet.timesheet as timesheet
+from timesheet.excel_store import ExcelStorage
 import xlsxwriter
 
 
-def run():
-    output_path = "For Afrika Staff Timesheet.xlsx"
-    path = "Juba_Sept_2023_Staff_Allocation.xlsx"
-    s = ExcelStorage(path)
+def generate(input_path, output_path, salary_date):
+    timesheet.now = salary_date
+    s = ExcelStorage(input_path)
     workbook = xlsxwriter.Workbook(output_path)
     for _, staff in s.all().items():
         worksheet = workbook.add_worksheet(staff.name)

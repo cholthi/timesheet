@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """Represents a calender monthly timesheet"""
-from helpers import date_iter
+from timesheet.helpers import date_iter
 import xlsxwriter
 import datetime
-from helpers import date_iter, days_in_month, box, write_instructions
+from timesheet.helpers import date_iter, days_in_month, box, write_instructions
 from xlsxwriter.utility import xl_rowcol_to_cell
 
 timesheet = {}
@@ -83,8 +83,7 @@ def write_excel(workbook, worksheet, file_name, staff):
     worksheet.merge_range("B2:AJ2", "Staff Timesheet", merge_format)
     worksheet.merge_range('A4:A6', 'Monthly Info', monthly_info_format)
     worksheet.write(3, 1, 'Month:', month_format)
-    date = datetime.datetime.strptime('01/09/2023', "%d/%m/%Y")
-    worksheet.write_datetime(3, 2, date, date_format)
+    worksheet.write_datetime(3, 2, now, date_format)
 
     # Prepared by box
     border_top = workbook.add_format({
@@ -232,7 +231,7 @@ def write_staff_timesheet(workbook, worksheet, staff):
         })
     for p_ts in staff_timesheet:
         col = 4
-        for date in date_iter(date.year, date.month):
+        for date in date_iter(now.year, now.month):
             hour = p_ts[date.day - 1] or None
             if date.weekday() < 5:
                 worksheet.write(row, col, hour, ts_hours_format)

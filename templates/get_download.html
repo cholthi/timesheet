@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="panel panel-default mt-100">
+  <div class="panel-heading">
+    Download the generated Timesheet file
+  </div>
+  <div class=" panel-body">
+	  <a href="{{ url_for('download', filename=filename) }}" class="btn btn-success"><img src="{{ url_for('static', filename='img/download.svg') }}">download</a>
+	  <span class="small">{{ filename }}<img src="{{ url_for('static', filename='img/excel.svg') }}"></span>
+  </div>
+</div>
+</div>
+{% endblock %}
+

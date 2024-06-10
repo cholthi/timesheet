@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Represents a timesheet record of staff single project"""
-from helpers import date_iter
+from timesheet.helpers import date_iter
 
 
 class TimesheetRecord():

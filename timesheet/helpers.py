@@ -2,7 +2,6 @@
 """Helper functions"""
 import datetime
 import calendar as c
-import helpers
 
 
 instructions = [
@@ -36,9 +35,9 @@ def days_in_month(date):
 
 def build_timesheet(date):
     """Return a renderable representation of user timesheet"""
-    from timesheet_record import TimesheetRecord
+    from timesheet.timesheet_record import TimesheetRecord
     ts = []
-    for d in helpers.date_iter(date.year, date.month):
+    for d in date_iter(date.year, date.month):
         tr = TimesheetRecord(d, float(0))
         ts.append(tr)
     return ts
@@ -100,4 +99,3 @@ def write_instructions(workbook, worksheet, row):
         worksheet.write(row, 0, i + 1, ins_format)
         worksheet.write(row, 1, ins, ins_format)
         row += 1
-

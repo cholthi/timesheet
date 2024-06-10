@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="panel panel-default mt-100">
+  <div class="panel-heading">
+    Timesheet
+  </div>
+  <div class=" panel-body">
+    <form enctype="multipart/form-data" method="POST" action="/timesheet/generate">
+  <div class="form-group">
+    <label for="formGroupExampleInput">Project allocation excel file</label>
+    <input type="file" class="form-control-file" name="timesheet" id="formGroupExampleInput" placeholder="Example input">
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Select salary date</label>
+    <input type="text" class="form-control datepicker" name="salary_date" id="formGroupExampleInput2" placeholder="Enter Salary date">
+  </div>
+  <input type="submit" class="btn btn-primary">upload</a>
+</form>
+  </div>
+</div>
+</div>
+{% endblock %}

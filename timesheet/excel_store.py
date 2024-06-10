@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Acts as storage for staff data in excel file"""
 import pandas as pd
-from staff import Staff
-from project import Project
+from timesheet.staff import Staff
+from timesheet.project import Project
 from datetime import datetime
 
 
