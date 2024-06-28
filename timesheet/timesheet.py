@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Represents a calender monthly timesheet"""
-from timesheet.helpers import date_iter
 import xlsxwriter
 import datetime
 from timesheet.helpers import date_iter, days_in_month, box, write_instructions
@@ -8,27 +7,6 @@ from xlsxwriter.utility import xl_rowcol_to_cell
 
 timesheet = {}
 now = datetime.datetime(2023, 9, 23)
-code_to_name = {
-        "UNICEF12": "UNICEF -Pibor Nutrition-SSD/PCA2023726/PD2023900",
-        "UNICEF13": "UNICEF -Pibor Health WB-",
-        "UNICEF10": "UNICEF - Education-SSD/PCA2019520/PD2022806",
-        "WFP42345": "WFP - Aweil Warehouse-FLA",
-        "WFP42342": "WFP - Gogrial West ",
-        "WFP42345": "WFP -Aweil South ",
-        "WFP42341": "WFP - Twic GFD,CBT",
-        "WFP42340": "WFP - Nutrition-Pibom FLA022",
-        "WFP42339": "WFP - Dyke Rehabilitation FLA1",
-        "WFP42343": "WFP - Urban Safety Net, Juba FLA",
-        "FAO41477": "FAO-DSR BRACE II SS/075",
-        "FAO41478": "FAO-PIBOR SS/062/22",
-        "SSHF2023": "SSHF - 2023",
-        "HUM42011": "HUMEDICA Pibom",
-        "DRU42201": "Pibor Conflict Emergency Response 2023",
-        "GER40503": "ForAfrika Germany - Menstrual Hygiene Project",
-        "SOU42212": "Souter Foundation UK- Manapack distributio",
-        "MAT41000": "Support Staff",
-        "UND40000": "UNHCR TEST PROJECT"
-        }
 admin_items = [
         "Paid Leave",
         "Sick Leave",
@@ -36,15 +14,6 @@ admin_items = [
         "Statutory Holiday",
         "Other"
         ]
-project_codes = code_to_name.keys()
-
-def get_timesheet(date):
-    """Get monthly timesheet of projects"""
-    for code in project_codes:
-        timesheet[code] = []
-        for d in date_iter(date.year, date.month):
-            timesheet[code].append((d, 0))
-    return timesheet
 
 def write_excel(workbook, worksheet, file_name, staff):
     """Write staff timesheet data to an excel file"""
@@ -176,11 +145,11 @@ def write_staff_timesheet(workbook, worksheet, staff):
         })
     row = 19
     for project in staff.projects:
-        if len(code_to_name[project.code]) > 32:
-            worksheet.set_row(row, len(code_to_name[project.code]) + 15)
-            worksheet.write(row, 1, code_to_name[project.code], projects_format)
+        if len(project.name) > 32:
+            worksheet.set_row(row, len(project.name) + 15)
+            worksheet.write(row, 1, project.name, projects_format)
         else:
-            worksheet.write(row, 1, code_to_name[project.code], projects_format)
+            worksheet.write(row, 1, project.name, projects_format)
         worksheet.write(row, 2, project.code, projects_format)
         row += 1
     calendar_format = workbook.add_format({

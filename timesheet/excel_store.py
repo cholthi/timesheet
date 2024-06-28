@@ -48,9 +48,10 @@ class ExcelStorage():
         col_names = df.columns.ravel()
         project_codes = col_names[2: len(df.loc[index])-1]
         projects = []
-        for project_code in project_codes:
-            project = Project(code=project_code, salary_allocation=round(
-                df.loc[index][project_code], 2))
+        for project_code_name in project_codes:
+            project_code, project_name = project_code_name.split('-', 1)
+            project = Project(code=project_code.strip(), name=project_name.strip(),salary_allocation=round(
+                df.loc[index][project_code_name], 2))
             project.set_start_date(datetime.now())
             projects.append(project)
         return projects

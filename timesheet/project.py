@@ -16,9 +16,12 @@ class Project():
                 self.salary_allocation = float(kwargs.get("salary_allocation"))
             if kwargs.get("start_date", None) is not None:
                 self.start_date = kwargs.get("start_date")
+            if kwargs.get("name", None) is not None:
+                self.name = kwargs.get("name")
         else:
             self.code = args[0]
-            self.salary_allocation = args[1]
+            self.name = args[1]
+            self.salary_allocation = args[2]
             self.start_date = datetime.now()
 
     def set_start_date(self, start):
